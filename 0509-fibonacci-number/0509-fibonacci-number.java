@@ -1,8 +1,17 @@
 class Solution {
     public int fib(int n) {
-        if(n==0) return 0;
-        if(n==1) return 1;
-        return fib(n-2)+fib(n-1);
+        int a = 0, b = 1;
+        if (n == 0)
+            return 0;
+        if (n == 1)
+            return 1;
+        while (n > 2) {
+            int temp = a;
+            a = b;
+            b += temp;
+            n--;
+        }
+        return a + b;
     }
 }
 
