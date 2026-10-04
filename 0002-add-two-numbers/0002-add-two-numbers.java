@@ -10,78 +10,38 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        // if(l1==null && l2==null) return null;
-        // if(l1==null) return l2;
-        // if(l2==null) return l1;
         ListNode head = null, tail = null;
-        int sum = 0, carry = 0;
+        int  carry = 0;
 
-        while (l1 != null && l2 != null) {
-            sum = l1.val + l2.val;
-            if (carry == 1) {
-                sum++;
-                carry = 0;
-            }
-            if (sum > 9) {
-                carry = 1;
-                sum = sum % 10;
-            }
-            ListNode node = new ListNode(sum, null);
-            if (head == null) {
-                head = node;
-                tail = node;
-            } else {
-                tail.next = node;
-                tail = node;
-            }
-            l1 = l1.next;
-            l2 = l2.next;
-        }
-        while (l1 != null) {
-            sum = l1.val;
-            if (carry == 1) {
-                carry = 0;
-                sum++;
-            }
-            if (sum > 9) {
-                sum = sum % 10;
-                carry = 1;
-            }
-            ListNode node = new ListNode(sum, null);
-            if (head == null) {
-                head = node;
-                tail = node;
-            } else {
-                tail.next = node;
-                tail = node;
-            }
-            l1 = l1.next;
-        }
-        while (l2 != null) {
-            sum = l2.val;
-            if (carry == 1) {
-                carry = 0;
-                sum++;
-            }
-            if (sum > 9) {
-                sum = sum % 10;
-                carry = 1;
-            }
-            ListNode node = new ListNode(sum, null);
-            if (head == null) {
-                head = node;
-                tail = node;
-            } else {
-                tail.next = node;
-                tail = node;
-            }
-            l2 = l2.next;
-        }
-        if (carry == 1) {
-            ListNode node = new ListNode(1, null);
-            tail.next = node;
-            tail = node;
+        while (l1 != null || l2 != null) {
+            int sum = carry;
 
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+
+            carry = sum / 10;
+            sum = sum % 10;
+
+            ListNode node = new ListNode(sum);
+
+            if (head == null) {
+                head = node;
+                tail = node;
+            } else {
+                tail.next = node;
+                tail = node;
+            }
+        }
+
+        if (carry != 0) {
+            tail.next = new ListNode(carry);
         }
         return head;
     }
