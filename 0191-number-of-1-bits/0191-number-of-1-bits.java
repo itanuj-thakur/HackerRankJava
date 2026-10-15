@@ -2,7 +2,7 @@ class Solution {
     public int hammingWeight(int n) {
         short count=0,i=0;
         while(i<32){
-            if((n|(1<<i))==n) count++;
+            if((n&(1<<i))!=0) count++;
             i++;
         }
         return count;
