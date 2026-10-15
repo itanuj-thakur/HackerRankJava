@@ -1,11 +1,9 @@
 class Solution {
     public boolean isPowerOfThree(int n) {
         if(n<=0) return false;
-        while(n!=1){
-            if(n%3!=0) return false;
-            n/=3;
-        }
-        return true;
+        double res=Math.log10(n)/Math.log10(3);
+        // return res==(int)res; for some cases it fails like 243 res=4.9999 ,so check precision lvl
+        return Math.abs(res-Math.round(res))<1e-10;
     }
 }
 
