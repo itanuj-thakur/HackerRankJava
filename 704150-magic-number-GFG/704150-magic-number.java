@@ -2,9 +2,10 @@ class Solution {
     public int nthMagicNo(int n) {
         // code here
         int result=0,power=5;
-        for(int i=0;i<32;i++){
-            if(((n>>i)&1)==1) result+=power;
+        while(n>0){
+            if((n&1)==1) result+=power;
             power*=5;
+            n>>=1;
         }
         return result;
     }
