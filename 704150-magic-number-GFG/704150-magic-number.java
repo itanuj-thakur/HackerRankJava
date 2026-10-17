@@ -1,9 +1,10 @@
 class Solution {
     public int nthMagicNo(int n) {
         // code here
-        int result=0;
+        int result=0,power=5;
         for(int i=0;i<32;i++){
-            if(((n>>i)&1)==1) result+=(int)Math.pow(5,i+1);
+            if(((n>>i)&1)==1) result+=power;
+            power*=5;
         }
         return result;
     }
