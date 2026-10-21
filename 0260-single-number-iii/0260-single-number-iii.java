@@ -1,24 +1,16 @@
 class Solution {
     public int[] singleNumber(int[] nums) {
-        int[] arr = new int[2];
-        HashMap<Integer, Integer> map = new HashMap<>();
-        
-        for (int num : nums) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
+        int mask=0,xor=0;
+        for(int num: nums) xor^=num;
+        mask=(xor&(-xor));
+        int[] arr=new int[2];
+        for(int num:nums){
+            if((num&mask)==0) arr[0]^=num;
+            else arr[1]^=num;
         }
-        
-        // Use an array to bypass the "effectively final" rule
-        int[] index = {0}; 
-        
-        map.forEach((key, val) -> {
-            if (val == 1) {
-                arr[index[0]++] = key;
-            }
-        });
         return arr;
     }
 }
-
 
 // Synced seamlessly with LeetHub Pro
 // Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
