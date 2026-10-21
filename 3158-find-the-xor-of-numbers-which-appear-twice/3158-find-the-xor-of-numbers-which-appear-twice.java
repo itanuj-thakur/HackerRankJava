@@ -1,7 +1,6 @@
 class Solution {
     public int duplicateNumbersXOR(int[] nums) {
         boolean[] seen=new boolean[51];
-        Arrays.fill(seen,false);
         int result = 0;
         for (int num : nums) {
             if(seen[num])
