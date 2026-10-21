@@ -1,10 +1,12 @@
 class Solution {
     public int duplicateNumbersXOR(int[] nums) {
-        HashSet<Integer> set = new HashSet<>();
+        boolean[] seen=new boolean[51];
+        Arrays.fill(seen,false);
         int result = 0;
         for (int num : nums) {
-            if(!set.add(num))//set.add() return false if already present
+            if(seen[num])
             result^=num;
+            else seen[num]=true;
         }
         return result;
     }
