@@ -1,25 +1,20 @@
 class Solution {
     public int reverse(int x) {
-        int result = 0;
+        long ans = reverseHelper(Math.abs((long)x));
 
-        while (x != 0) {
-            int d = x % 10;
+        if (x < 0) ans = -ans;
 
-            // Check overflow for positive limit
-            if (result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && d > 7)) {
-                return 0;
-            }
+        if (ans > Integer.MAX_VALUE || ans < Integer.MIN_VALUE)
+            return 0;
 
-            // Check overflow for negative limit
-            if (result < Integer.MIN_VALUE / 10 || (result == Integer.MIN_VALUE / 10 && d < -8)) {
-                return 0;
-            }
+        return (int) ans;
+    }
 
-            result = result * 10 + d;
-            x /= 10;
-        }
+    static long reverseHelper(long n) {
+        if (n == 0) return 0;
 
-        return result;
+        return (n % 10) * (long)Math.pow(10, (int)Math.log10(n))
+                + reverseHelper(n / 10);
     }
 }
 
