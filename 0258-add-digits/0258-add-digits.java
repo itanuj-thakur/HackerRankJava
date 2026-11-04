@@ -1,6 +1,9 @@
 class Solution {
-    public int addDigits(int num) {
-        return findResult(num);
+    public int addDigits(int n) {
+        while(n>=10){
+            n=add(n);
+        }
+        return n;
     }
     static int add(int n){
         int sum=0;
@@ -10,10 +13,10 @@ class Solution {
         }
         return sum;
     }
-    static int findResult(int n){
-        if(n<10) return n;
-        return findResult(add(n));
-    }
+    // static int findResult(int n){
+    //     if(n<10) return n;
+    //     return findResult(add(n));
+    // }
 }
 
 // Synced seamlessly with LeetHub Pro
